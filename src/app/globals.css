@@ -11,13 +11,26 @@ body {
 body{
   @apply bg-gradient-to-r from-gray-300 via-gray-100 to-gray-400 text-gray-800/50
 }
+
+/* Responsive and scrollable code blocks for prose */
+.prose pre {
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 0.95em;
+}
+
+@media (max-width: 640px) {
+  .prose pre {
+    font-size: 0.85em;
+    padding: 0.75rem;
+  }
+}
+
+/* Optionally, ensure code blocks have a dark background if highlight.js theme is missing */
 .prose pre, .prose pre code {
   background: #0d1117 !important;
   color: #c9d1d9 !important;
-  overflow-x: auto;
-  border-radius: 0.5rem; /* optional: rounded corners */
-  padding: 1rem;         /* optional: more padding */
-  font-size: 0.95em; 
 }
 
 @media (max-width: 640px) {
