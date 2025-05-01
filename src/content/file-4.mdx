@@ -1,0 +1,48 @@
+---
+title: "Getting Started with Next.js"
+date: "2025-03-20"
+description: "A comprehensive guide to building modern web applications with Next.js"
+tags: ["nextjs", "react", "webdev"]
+---
+
+This is a sample article about Next.js. The content here will be rendered as part of the article body.
+<br/>
+Here is a code snippet:
+
+```typescript
+
+//page.tsx
+
+export const metadata: Metadata = {
+  title: {
+    template: '%s | wildcardcal.pro',
+    default: 'wildcardcal.pro'
+  },
+  description: "web development insights",
+};
+
+const greeting = "Hello, World!";
+console.log(greeting);
+
+```
+<br/>
+- The frontmatter block (between `---`) should be at the very top.
+- The rest is your article content.
+<br/>
+
+### **How Your Page Should Work**
+<br/>
+- Use `getArticle(slug)` to get the frontmatter and content.
+- Use the frontmatter for the title, date, description, and tags.
+- Render the MDX file as a component for the content (as you are now).
+
+
+<br/>
+### **Your Current Setup Is Correct!**
+<br/>
+- Your `getArticle` function is best practice.
+- Your `[slug]/page.tsx` is now using the correct approach for rendering the MDX content and displaying metadata.
+
+<br/>
+**If you keep your MDX files in the format above, your articles will be well-formatted and display correctly.**
+
