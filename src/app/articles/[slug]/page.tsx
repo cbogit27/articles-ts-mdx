@@ -3,6 +3,10 @@ import { notFound } from "next/navigation";
 import { getArticle, getArticles, getArticleMetadata } from "@/lib/articles";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
+type Params = {
+  params: Promise<{ slug: string }>
+}
+
 export async function generateStaticParams() {
   const { articles } = await getArticles(1, 'newest');
   return articles.map((article) => ({
@@ -10,13 +14,13 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: Params ): Promise<Metadata> {
   const { slug } = await params;
   const metadata = await getArticleMetadata(slug);
   return metadata;
 }
 
-export default async function ArticleSlug({ params }: { params: { slug: string } }) {
+export default async function ArticleSlug({ params }: Params) {
   const { slug } = await params;
   const article = await getArticle(slug);
 
