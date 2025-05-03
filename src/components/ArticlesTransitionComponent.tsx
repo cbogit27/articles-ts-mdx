@@ -8,7 +8,7 @@ type Props = {
 
 const ArticlesFadeInVariants = {
     initial: { opacity: 0, y: 100 },
-    animate: (idx: number) => ({ opacity: 1, y: 0,  transition: {delay: idx*0.06, duration: idx*0.6 } })
+    animate: (idx: number) => ({ opacity: 1, y: 0,  transition: {delay: idx*0.06, duration: 0.7 } })
 }
 
 export default function ArticlesTransitionComp({ articles }: Props) {
