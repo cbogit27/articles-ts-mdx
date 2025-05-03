@@ -2,6 +2,9 @@ import { Metadata } from "next"
 import Link from 'next/link'
 import { getArticles, type SortOrder } from '@/lib/articles'
 import Pagination from '@/components/Pagination'
+import ArticlesTransitionComp from "@/components/ArticlesTransitionComponent"
+
+
 
 export const metadata: Metadata = {
     title: "Articles"
@@ -40,19 +43,7 @@ export default async function Articles({ searchParams }: Props) {
                     </Link>
                 </div>
             </div>
-            {articles.map(({ slug, frontmatter }) => (
-                <Link 
-                    key={slug} 
-                    href={`/articles/${slug}`}
-                    className="block"
-                >
-                    <article className="mb-8 p-2 bg-gray-400/50 rounded-br-2xl rounded-bl-2xl rounded-tr-2xl transition-all duration-300 ease-in-out hover:bg-gray-100/20 p-4">
-                        <h2 className="text-2xl font-bold mb-1">{frontmatter.title}</h2>
-                        <p className="text-gray-600 mb-2">{frontmatter.description}</p>
-                        <p className="text-sm text-gray-500 mt-2">{frontmatter.date}</p>
-                    </article>
-                </Link>
-            ))}
+            <ArticlesTransitionComp articles={articles}/>
             <Pagination 
                 currentPage={currentPage}
                 totalPages={totalPages}

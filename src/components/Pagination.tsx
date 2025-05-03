@@ -55,7 +55,7 @@ export default function Pagination({ currentPage, totalPages, basePath, sortOrde
   }
 
   return (
-    <div className="flex items-center justify-center gap-2 mt-8">
+    <div className="flex items-center justify-center gap-2 mt-16">
       {currentPage > 1 && (
         <Link
           href={`${basePath}?page=${currentPage - 1}&sort=${sortOrder}`}
