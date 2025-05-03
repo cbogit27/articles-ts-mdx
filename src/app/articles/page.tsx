@@ -22,7 +22,7 @@ export default async function Articles({ searchParams }: Props) {
     
     return (
         <main className="container mx-auto max-w-4xl p-4 md:p-16">
-            <div className="mb-8">
+            <div className="py-12 md:pb-8">
                 <h3 className="text-2xl font-light">Articles relating to web development and technology insights</h3>
                 <div className="mt-4 flex gap-4">
                     <Link 
