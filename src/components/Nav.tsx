@@ -1,9 +1,25 @@
+"use client"
 import Image from "next/image";
 import { FaBluesky } from "react-icons/fa6";
 import Avi from "../../public/img/avatar.png"
 import Link from "next/link";
+import { useTransitionRouter } from "next-view-transitions";
 
 export default function Nav(){
+
+    const router = useTransitionRouter()
+
+    const routes = [
+    {
+        name: "Articles",
+        url: "/articles"
+    },
+    {
+        name: "Projects",
+        url:"/projects"
+    }
+]
+
 
     return (
         <nav className="border-b-2 border-dotted border-gray-600/20 p-4 md:p-6">
@@ -20,12 +36,19 @@ export default function Nav(){
                     </div>
                     <div>
                         <ul className="flex text-lg space-x-4 font-normal cursor-pointer">
-                            <Link href={"/articles"} className="border-r border-dotted pr-4">
-                            <li>Articles</li>
-                            </Link>
-                            <Link href={"/projects"}>
-                            <li>Projects</li>
-                            </Link>
+                            {routes.map((route) => (
+                                <li key={route.name} className="">
+                                    <Link href={route.url} onClick={(e) =>{
+                                        e.preventDefault()
+                                        router.push(route.url, {
+                                            onTransitionReady: pageAnimation,
+                                        })
+                                    }}>
+                                        {route.name}
+                                    </Link>
+                                </li>
+                            ))}
+                            
                         </ul>
                     </div>
                 </div>
@@ -40,5 +63,46 @@ export default function Nav(){
                 </Link>
             </div>
         </nav>
+    )
+}
+
+const pageAnimation = () => {
+    document.documentElement.animate(
+        [
+            {
+                opacity: 1,
+                scale: 1,
+                transform: 'translateY(0)',
+            },
+            {
+                opacity: 0.5,
+                scale: 0.9,
+                transform: "translateY(-100px)",
+            }
+        ],
+        {
+            duration: 1000,
+            easing: "cubic-bezier(0.76,0,0.24,1)",
+            fill: "forwards",
+            pseudoElement: "::view-transition-old(root)"
+        }
+    )
+
+    document.documentElement.animate(
+        [
+            {
+                
+                transform: 'translateY(100%)',
+            },
+            {
+                transform: "translateY(0)",
+            }
+        ],
+        {
+            duration: 1000,
+            easing: "cubic-bezier(0.76,0,0.24,1)",
+            fill: "forwards",
+            pseudoElement: "::view-transition-new(root)"
+        }
     )
 }

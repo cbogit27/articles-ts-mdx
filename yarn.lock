@@ -3145,6 +3145,11 @@ next-mdx-remote@^5.0.0:
     vfile "^6.0.1"
     vfile-matter "^5.0.0"
 
+next-view-transitions@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/next-view-transitions/-/next-view-transitions-0.3.4.tgz#442372e1d55f25d565c063032231980784e224f0"
+  integrity sha512-SSiskenQ8JkEFGzPjvFwC5LGGoqgTxM5dxexkeugxvcXFLpWI2ZUh4IsCURD3ovW+8Ue7xXlrtrpy8b7XR7IwQ==
+
 next@15.3.1:
   version "15.3.1"
   resolved "https://registry.npmjs.org/next/-/next-15.3.1.tgz"

@@ -1,7 +1,9 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { getArticle, getArticles, getArticleMetadata } from "@/lib/articles";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import PageWrapper from "@/components/PageWrapper";
 
 type Params = {
   params: Promise<{ slug: string }>
@@ -29,25 +31,42 @@ export default async function ArticleSlug({ params }: Params) {
   }
 
   return (
-    <main className="">
+    <PageWrapper>
       <article className="container mx-auto max-w-4xl p-4 md:p-16">
-        <h1 className="text-2xl font-bold">{article.frontmatter.title}</h1>
-        <div className="flex items-center justify-between py-8">
-          <div>
-            <p className="text-gray-700/40 text-sm font-semibold">{article.frontmatter.date}</p>
-          </div>
-          <div>
-            {article.frontmatter.tags?.map((tag) => (
-              <span key={tag} className="inline-block mr-3 rounded-tr-lg rounded-bl-lg rounded-br-lg border border-gray-400 px-3 py-1 text-sm font-semibold text-gray-700/40">
-                {tag}
-              </span>
-            ))}
-          </div>
+        <div className="mb-8">
+          <Link 
+            href="/articles" 
+            className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-300"
+            scroll={false}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Back to Articles
+          </Link>
         </div>
-        <div className="py-4 prose prose-lg">
+        
+        <header className="mb-10 article-header">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">{article.frontmatter.title}</h1>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between py-4 border-b border-gray-200/30">
+            <p className="text-gray-700/40 text-sm font-semibold mb-4 md:mb-0">{article.frontmatter.date}</p>
+            <div className="flex flex-wrap gap-2">
+              {article.frontmatter.tags?.map((tag) => (
+                <span 
+                  key={tag} 
+                  className="inline-block rounded-tr-lg rounded-bl-lg rounded-br-lg border border-gray-400 px-3 py-1 text-sm font-semibold text-gray-700/40"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </header>
+        
+        <div className="py-4 prose prose-lg max-w-none article-content">
           <MDXRemote source={article.content || ""} />
         </div>
       </article>
-    </main>
+    </PageWrapper>
   );
 }
