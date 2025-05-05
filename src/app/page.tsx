@@ -44,7 +44,7 @@ const imageVariants = {
 
 export default function Home() {
   return (
-    <main>
+    <PageWrapper>
       {homeData.map((data) => (
         <motion.div 
           key={data.greeting} 
@@ -94,6 +94,6 @@ export default function Home() {
           </motion.div>
         </motion.div>
       ))}
-    </main>
+    </PageWrapper>
   );
 }
