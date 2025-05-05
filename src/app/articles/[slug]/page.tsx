@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getArticle, getArticles, getArticleMetadata } from "@/lib/articles";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import PageWrapper from "@/components/PageWrapper";
+import { IoCaretBackSharp } from "react-icons/io5";
 
 type Params = {
   params: Promise<{ slug: string }>
@@ -36,13 +37,11 @@ export default async function ArticleSlug({ params }: Params) {
         <div className="mb-8">
           <Link 
             href="/articles" 
-            className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-300"
+            className="inline-flex items-center text-gray-800/40 hover:text-gray-900 transition-colors duration-300"
             scroll={false}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            Back to Articles
+            <IoCaretBackSharp size={40}/>
+            Back
           </Link>
         </div>
         
