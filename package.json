@@ -17,7 +17,7 @@
     "framer-motion": "^12.9.4",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.11.1",
-    "next": "15.3.1",
+    "next": "15.3.8",
     "next-mdx-remote": "^5.0.0",
     "next-view-transitions": "^0.3.4",
     "react": "^19.0.0",
