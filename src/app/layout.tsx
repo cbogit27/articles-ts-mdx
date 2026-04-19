@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import '@/styles/highlight-js/github-dark.css'
-import {ViewTransitions} from 'next-view-transitions'
+
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
@@ -24,8 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ViewTransitions>
-      <html lang="en">
+    <html lang="en">
       <body className={`${poppins.variable} font-sans antialiased`}>
       
         <Nav/>
@@ -33,6 +32,5 @@ export default function RootLayout({
         
       </body>
     </html>
-    </ViewTransitions>
       );
 }
