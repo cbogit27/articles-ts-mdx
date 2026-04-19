@@ -16,10 +16,22 @@ export type Article = {
 
 export type SortOrder = 'newest' | 'oldest'
 
-export async function getArticles(page: number = 1, sortOrder: SortOrder = 'newest', limit?: number): Promise<{ articles: Article[], totalPages: number }> {
+function getArticleFiles() {
   const contentDir = path.join(process.cwd(), 'src/content')
   const files = fs.readdirSync(contentDir)
-  const mdxFiles = files.filter(file => file.endsWith('.mdx'))
+  return {
+    contentDir,
+    mdxFiles: files.filter(file => file.endsWith('.mdx'))
+  }
+}
+
+export function getArticleSlugs(): string[] {
+  const { mdxFiles } = getArticleFiles()
+  return mdxFiles.map(file => file.replace('.mdx', ''))
+}
+
+export async function getArticles(page: number = 1, sortOrder: SortOrder = 'newest', limit?: number): Promise<{ articles: Article[], totalPages: number }> {
+  const { contentDir, mdxFiles } = getArticleFiles()
 
   const allArticles = await Promise.all(
     mdxFiles.map(async (file) => {
@@ -67,8 +79,12 @@ export async function getArticles(page: number = 1, sortOrder: SortOrder = 'newe
   }
 }
 
-export async function getArticle(slug: string): Promise<Article> {
+export async function getArticle(slug: string): Promise<Article | null> {
   const filePath = path.join(process.cwd(), "src/content", `${slug}.mdx`)
+  if (!fs.existsSync(filePath)) {
+    return null
+  }
+
   const fileContent = fs.readFileSync(filePath, "utf-8")
   const { data: frontmatter, content } = matter(fileContent)
   

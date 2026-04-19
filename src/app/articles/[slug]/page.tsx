@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getArticle, getArticles, getArticleMetadata } from "@/lib/articles";
+import { getArticle, getArticleMetadata, getArticleSlugs } from "@/lib/articles";
 import PageWrapper from "@/components/PageWrapper";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { evaluate } from "@mdx-js/mdx";
@@ -14,9 +14,8 @@ type Params = {
 }
 
 export async function generateStaticParams() {
-  const { articles } = await getArticles(1, 'newest');
-  return articles.map((article) => ({
-    slug: article.slug,
+  return getArticleSlugs().map((slug) => ({
+    slug,
   }));
 }
 

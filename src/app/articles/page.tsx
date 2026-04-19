@@ -20,7 +20,7 @@ export default async function Articles({ searchParams }: Props) {
     const { articles, totalPages } = await getArticles(currentPage, sortOrder)
     
     return (
-        <PageWrapper className="view-transition-container">
+        <PageWrapper>
             <main className="container mx-auto max-w-4xl p-4 md:p-16">
                 <header className="py-8 animate-fade-in">
                     <h3 className="text-2xl font-light">Articles relating to web development and technology insights</h3>

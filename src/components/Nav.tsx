@@ -5,7 +5,6 @@ import Avi from "../../public/img/avatar.png"
 import Link from "next/link";
 
 export default function Nav(){
-
     const routes = [
     {
         name: "Articles",

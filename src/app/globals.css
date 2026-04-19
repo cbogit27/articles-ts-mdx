@@ -17,31 +17,6 @@ body {
   overflow-x: hidden;
 }
 
-/* View Transition Fixes */
-::view-transition-group(root) {
-  animation-duration: 0.5s;
-  z-index: 1;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  mix-blend-mode: normal;
-}
-
-/* Remove animations to let JavaScript control them */
-::view-transition-old(root) {
-  animation: none !important;
-}
-
-::view-transition-new(root) {
-  animation: none !important;
-}
-
-/* Navigation context classes for JavaScript animation control */
-.navigating-to-article {
-  /* Style adjustments during transition */
-}
-
 /* Article card animations */
 .article-card {
   transform-origin: center;
