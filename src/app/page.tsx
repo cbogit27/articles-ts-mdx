@@ -34,6 +34,7 @@ export default function Home() {
               alt="Image of Lagos Landmark"
               className="object-cover transition-transform duration-700 hover:scale-105"
               quality={100}
+              loading="lazy"
               placeholder="blur"
               blurDataURL={data.img}
             />
