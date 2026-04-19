@@ -1,19 +1,21 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getArticle, getArticles, getArticleMetadata } from "@/lib/articles";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { getArticle, getArticleMetadata, getArticleSlugs } from "@/lib/articles";
 import PageWrapper from "@/components/PageWrapper";
 import { MdArrowBackIosNew } from "react-icons/md";
+import { evaluate } from "@mdx-js/mdx";
+import * as runtime from "react/jsx-runtime";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 
 type Params = {
   params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
-  const { articles } = await getArticles(1, 'newest');
-  return articles.map((article) => ({
-    slug: article.slug,
+  return getArticleSlugs().map((slug) => ({
+    slug,
   }));
 }
 
@@ -30,6 +32,12 @@ export default async function ArticleSlug({ params }: Params) {
   if (!article) {
     notFound();
   }
+
+  const { default: MDXContent } = await evaluate(article.content || "", {
+    ...runtime,
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [rehypeHighlight],
+  });
 
   return (
     <PageWrapper>
@@ -63,7 +71,7 @@ export default async function ArticleSlug({ params }: Params) {
         </header>
         
         <div className="py-4 prose prose-lg max-w-none article-content">
-          <MDXRemote source={article.content || ""} />
+          <MDXContent />
         </div>
       </article>
     </PageWrapper>

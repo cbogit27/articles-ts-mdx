@@ -5,6 +5,7 @@ import rehypeHighlight from 'rehype-highlight'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  distDir: process.env.NODE_ENV === 'development' ? '.next-dev' : '.next',
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx']
 }
 
