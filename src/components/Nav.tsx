@@ -53,7 +53,7 @@ export default function Nav(){
                     </div>
                 </div>
             </div>
-            <Link target="_blank" href="https://bsky.app/profile/winbeyondcrude.bsky.social" className="flex space-x-1">
+            <Link target="_blank" href="https://bsky.app/profile/wildcardcal.bsky.social" className="flex space-x-1">
                 <div className="p-2">
                     <FaBluesky className="text-blue-800" size={15}/>
                 </div>
